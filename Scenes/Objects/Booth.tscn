@@ -3,19 +3,18 @@
 [ext_resource type="Script" uid="uid://ba5m0eblo5tdi" path="res://Scripts/Player/PlayerController.gd" id="1_krg6j"]
 [ext_resource type="Texture2D" uid="uid://dedlig4vf6lrj" path="res://icon.svg" id="2_kjguj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_80yui"]
-size = Vector2(96, 144)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jbkp"]
 
 [node name="Booth" type="CharacterBody2D" unique_id=1732557351]
 motion_mode = 1
 script = ExtResource("1_krg6j")
-size = Vector2(94, 144)
+size = Vector2(95, 144)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=802209350]
 scale = Vector2(0.75, 1)
 texture = ExtResource("2_kjguj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2048407257]
-shape = SubResource("RectangleShape2D_80yui")
+shape = SubResource("RectangleShape2D_8jbkp")
 
 [node name="BalanceCasts" type="Node2D" parent="." unique_id=1296464656]

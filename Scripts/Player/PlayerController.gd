@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-@export var size := Vector2(95,144)
+@export var size := Vector2(96,144)
 @export var balance_acc := 5 #how many casts to spawn to check for balance
 @export var balance_count := 3 #how many casts need to collide for this object to be balanced
 @export var balance_thres := 16.0 #sets the distance for the balance check, will snap below this.
 
-const SPEED := 300.0
-const JUMP_VELOCITY := -400.0
-
+const SPEED := 1200.0
+const DRAG := 1.2
 var balanced := false
 
 func _ready() -> void:
@@ -37,15 +36,25 @@ func _ready() -> void:
 		$BalanceCasts.add_child(cast)
 
 func _physics_process(delta: float) -> void:
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	
 	var direction := Vector2(Input.get_axis("LEFT", "RIGHT"), Input.get_axis("UP", "DOWN"))
-	if direction != Vector2.ZERO:
-		velocity.x = direction.x * SPEED
-		velocity.y = direction.y * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+	if direction.x and abs(velocity.x) < SPEED:
+		velocity.x += direction.x * SPEED * delta
+	
+	if not direction.x or sign(velocity.x) != direction.x:
+		#adds friction when stopped or changing direction
+		velocity.x /= DRAG
+		if abs(velocity.x) < SPEED/100:
+			velocity.x *= -1 * abs(direction.x) #negates or stops velocity based on control
+		
+	if direction.y and abs(velocity.y) < SPEED:
+		velocity.y += direction.y * SPEED * delta
+		
+	if not direction.y or sign(velocity.y) != direction.y:
+		#adds friction when stopped or changing direction
+		velocity.y /= DRAG
+		if abs(velocity.y) < SPEED/100:
+			velocity.y *= -1 * abs(direction.y)
 	
 	balanced = false
 	if velocity.is_equal_approx(Vector2.ZERO):
@@ -54,14 +63,28 @@ func _physics_process(delta: float) -> void:
 	if balanced:
 		$Sprite2D.self_modulate = Color(1, 1, 1, 1)
 	else:
-		print("yep")
 		$Sprite2D.self_modulate = Color(1, 0, 0, 1)
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var colln = get_slide_collision(i).get_normal()
+		
+		if colln.x:
+			velocity.x = colln.x
+		if colln.y: 
+			velocity.y = colln.y
+		
+	if abs(global_position.x - snappedf(global_position.x, 48.0)) <= max(abs(velocity.x)/100, 1):
+		global_position.x = snappedf(global_position.x, 48.0)
+		prints("snapped to ", global_position.x)
+	if abs(global_position.y - snappedf(global_position.y, 48.0)) <= max(abs(velocity.y)/100, 1):
+		global_position.y = snappedf(global_position.y, 48.0)
 
 
 func balance() -> bool:
+	#check whether is balance
 	var colls := 0
-	for i in range($BalanceCasts.get_child_count()):
+	for i in range(balance_acc):
 		var cast = $BalanceCasts.get_child(i)
 		if cast is RayCast2D and cast.is_colliding():
 			colls += 1
