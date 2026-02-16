@@ -108,9 +108,10 @@ func balance() -> bool:
 	for i in range(balance_acc):
 		var cast = $BalanceCasts.get_child(i)
 		if cast is RayCast2D and cast.is_colliding():
+			#check if valid landing spot
 			var collider = cast.get_collider()
 			var data = collider.get_cell_tile_data(collider.local_to_map(cast.get_collision_point()))
-			if data.get_custom_data("Fire"):
+			if data.has_custom_data("Fire") and data.get_custom_data("Fire"):
 				return false
 			colls += 1
 	return colls >= balance_count

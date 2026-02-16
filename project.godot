@@ -62,6 +62,16 @@ ESCAPE={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Tiles"
+2d_physics/layer_2="TilesProjs"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="PlayerProjs"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="EnemyProjs"
+2d_physics/layer_7="Area"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -56,6 +56,8 @@ blend_point_1/pos = 0.0
 min_space = 0.0
 
 [node name="Booth" type="CharacterBody2D" unique_id=1732557351]
+collision_layer = 4
+collision_mask = 51
 motion_mode = 1
 script = ExtResource("1_krg6j")
 size = Vector2(95, 144)
@@ -76,4 +78,4 @@ libraries/ = SubResource("AnimationLibrary_w50yg")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1377457361]
 tree_root = SubResource("AnimationNodeBlendSpace1D_w50yg")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2(0, 0)
+parameters/blend_position = 0.0

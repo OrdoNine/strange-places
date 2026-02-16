@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c2k2hsg5d30rw"]
+
+[ext_resource type="Script" uid="uid://donaav2n2ru4a" path="res://Scripts/Map/timed_hazard.gd" id="1_p0tti"]
+[ext_resource type="Resource" uid="uid://d6bbvqcb7rj0" path="res://Resources/Data/Effects/Deadly.tres" id="2_y6fv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6fv8"]
+radius = 90.0
+
+[node name="Timed Hazard" type="Node2D" unique_id=1403255283]
+script = ExtResource("1_p0tti")
+area_shape = SubResource("CircleShape2D_y6fv8")
+main_effect = ExtResource("2_y6fv8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2045196902]
+collision_layer = 64
+collision_mask = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=105261469]
+
+[node name="EffectSpawns" type="Node2D" parent="." unique_id=49587825]
+
+[node name="Main" type="Node2D" parent="EffectSpawns" unique_id=1442192944]
+
+[node name="Prep" type="Node2D" parent="EffectSpawns" unique_id=1255713962]
+
+[node name="Timers" type="Node" parent="." unique_id=1552284142]
+
+[node name="Timer" type="Timer" parent="Timers" unique_id=2020098052]
+
+[node name="PreTimer" type="Timer" parent="Timers" unique_id=195898267]
+wait_time = 0.7
+one_shot = true
+
+[node name="PostTimer" type="Timer" parent="Timers" unique_id=623129848]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timers/PreTimer" to="." method="_on_pre_timer_timeout"]
+[connection signal="timeout" from="Timers/PostTimer" to="." method="_on_post_timer_timeout"]

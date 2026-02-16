@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" format=3 uid="uid://d6bbvqcb7rj0"]
+
+[ext_resource type="Script" uid="uid://ceccxlh8eibgi" path="res://Resources/Data/Effects/Effect.gd" id="1_fuvn3"]
+[ext_resource type="Texture2D" uid="uid://dedlig4vf6lrj" path="res://icon.svg" id="2_j67o2"]
+
+[resource]
+script = ExtResource("1_fuvn3")
+target_player = true
+target_enemy = true
+target_projs = true
+texture = ExtResource("2_j67o2")
