@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="NPCAI" format=3 uid="uid://cwdkbc5qu0tjn"]
+
+[ext_resource type="Script" uid="uid://ds1hjtrdog76s" path="res://Resources/Data/NPCs/AI.gd" id="1_hdwo7"]
+
+[resource]
+script = ExtResource("1_hdwo7")
+patrol = 8
+metadata/_custom_type_script = "uid://ds1hjtrdog76s"

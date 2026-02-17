@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xbvej2qt1okn"]
+
+[ext_resource type="Script" uid="uid://dbmyhonhufugo" path="res://Scripts/Map/npc.gd" id="1_ius0o"]
+[ext_resource type="PackedScene" uid="uid://bm1skbo3713dq" path="res://Scenes/Objects/player.tscn" id="1_tusvo"]
+
+[node name="NPC" unique_id=1732557351 instance=ExtResource("1_tusvo")]
+script = ExtResource("1_ius0o")
+
+[connection signal="changed_balance" from="." to="." method="_on_changed_balance"]

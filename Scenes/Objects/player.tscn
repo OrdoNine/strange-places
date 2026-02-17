@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bm1skbo3713dq"]
 
-[ext_resource type="Script" uid="uid://ba5m0eblo5tdi" path="res://Scripts/Player/PlayerController.gd" id="1_krg6j"]
+[ext_resource type="Script" uid="uid://ba5m0eblo5tdi" path="res://Scripts/Player/PlayerController.gd" id="1_kvv6r"]
 [ext_resource type="Texture2D" uid="uid://dedlig4vf6lrj" path="res://icon.svg" id="2_kjguj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jbkp"]
@@ -55,13 +55,11 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_7fmum")
 blend_point_1/pos = 0.0
 min_space = 0.0
 
-[node name="Booth" type="CharacterBody2D" unique_id=1732557351]
+[node name="Player" type="CharacterBody2D" unique_id=1732557351]
 collision_layer = 4
 collision_mask = 51
 motion_mode = 1
-script = ExtResource("1_krg6j")
-size = Vector2(95, 144)
-balance_thres = 32.0
+script = ExtResource("1_kvv6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=802209350]
 scale = Vector2(0.75, 1)
